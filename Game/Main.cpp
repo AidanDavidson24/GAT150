@@ -18,6 +18,8 @@ int main()
 	bool success = neu::json::Load("json.txt", document);
 	assert(success);
 
+	scene.Read(document);
+
 	std::string str;
 	neu::json::Get(document, "string", str);
 	std::cout << str << std::endl;

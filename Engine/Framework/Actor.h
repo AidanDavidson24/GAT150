@@ -10,7 +10,7 @@ namespace neu
 	class Scene;
 	class Component;
 	class Renderer;
-	class Actor : public GameObject
+	class Actor : public GameObject, public ISerializable
 	{
 	public:
 		Actor() = default;
@@ -46,6 +46,10 @@ namespace neu
 		Actor* m_parent = nullptr;
 		std::vector<std::unique_ptr<Component>> m_components;
 		std::vector<std::unique_ptr<Actor>> m_children;
+
+		// Inherited via ISerializable
+		virtual bool Write(const rapidjson::Value& value) const override;
+		virtual bool Read(const rapidjson::Value& value) override;
 	};
 
 	template<typename T>

@@ -48,4 +48,15 @@ namespace neu
 		component->m_owner = this;
 		m_components.push_back(std::move(component));
 	}
+	bool Actor::Write(const rapidjson::Value& value) const
+	{
+		return true;
+	}
+	bool Actor::Read(const rapidjson::Value& value)
+	{
+		READ_DATA(value, tag);
+		READ_DATA(value, name);
+
+		return true;
+	}
 }

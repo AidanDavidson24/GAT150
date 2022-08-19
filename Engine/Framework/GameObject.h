@@ -1,5 +1,6 @@
 #pragma once
 #include "../Math/Transform.h"
+#include "Serialization/Serialization.h"
 
 namespace neu
 {

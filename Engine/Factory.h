@@ -49,4 +49,3 @@ namespace neu
 
 		return std::unique_ptr<T>();
 	}
-}

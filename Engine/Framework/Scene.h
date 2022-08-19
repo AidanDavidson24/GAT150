@@ -13,7 +13,7 @@ namespace neu
 	class Renderer;
 	class Game;
 
-	class Scene
+	class Scene : public ISerializable
 	{
 	public:
 		Scene() = default;
@@ -22,6 +22,8 @@ namespace neu
 
 		void Update();
 		void Draw(Renderer& renderer);
+
+		void Write(const rapidjson::Value& value) const;
 
 		void Add(std::unique_ptr<Actor> actor);
 
