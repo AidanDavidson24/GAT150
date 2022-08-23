@@ -12,13 +12,13 @@ namespace neu
 	class CreatorBase
 	{
 	public:
-		virtual std::unique_ptr <GameObject>Create() = 0;
+		virtual std::unique_ptr<GameObject> Create() = 0;
 	};
 
 	template <typename T>
 	class Creator : public CreatorBase
 	{
-		std::unique_ptr<GameObject>Create() override
+		std::unique_ptr<GameObject> Create() override
 		{
 			return std::make_unique<T>();
 		}
@@ -33,7 +33,7 @@ namespace neu
 		std::unique_ptr<T> Create(const std::string& key);
 
 	private:
-		std::map<std::stringbuf, std::unique_ptr<CreatorBase>> m_registry;
+		std::map<std::string, std::unique_ptr<CreatorBase>> m_registry;
 	};
 
 	template<typename T>

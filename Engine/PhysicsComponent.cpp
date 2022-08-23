@@ -11,4 +11,12 @@ namespace neu
 
 		m_acceleration = Vector2{ 0, 0 };
 	}
+	bool PhysicsComponent::Write(const rapidjson::Value& value) const
+	{
+		return false;
+	}
+	bool PhysicsComponent::Read(const rapidjson::Value& value)
+	{
+		return false;
+	}
 }

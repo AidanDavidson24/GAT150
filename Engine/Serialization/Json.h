@@ -9,6 +9,7 @@ namespace neu
 {
 	struct Vector2;
 	struct Color;
+	struct Rect;
 }
 
 namespace neu

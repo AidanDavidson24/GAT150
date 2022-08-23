@@ -2,6 +2,7 @@
 #include "../Math/Transform.h"
 #include "Serialization/Serialization.h"
 
+#define REGISTER_CLASS(class) Factory::Instance().Register<class>(#class);
 namespace neu
 {
 	class GameObject
@@ -9,16 +10,13 @@ namespace neu
 	public:
 		GameObject() = default;
 		GameObject(const Transform& transform) : m_transform{ transform } {}
-		
-		virtual void Update() = 0;
 
 		Transform& GetTransform() { return m_transform; }
 
 		Transform m_transform;
 
-		virtual void Initilize() = 0;
+		virtual void Initialize() = 0;
 		virtual void Update() = 0;
-
 	protected:
 
 	};

@@ -1,5 +1,5 @@
 #pragma once
-#include "box2d/b2_world.h" 
+#include "Math/Vector2.h"
 #include "box2d/box2d.h"
 #include <memory> 
 
@@ -8,10 +8,10 @@ namespace neu
 	class PhysicsSystem
 	{
 	public:
-		struct RigidBody
+		struct RigidBodyData
 		{
 			float gravity_scale = 1;
-			bool Constrain_angle = false;
+			bool constrain_angle = false;
 			bool is_dynamic = true;
 		};
 		struct CollisionData

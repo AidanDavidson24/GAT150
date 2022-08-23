@@ -8,7 +8,7 @@ namespace neu
 	{
 		for (auto& component : m_components)
 		{
-			component->Initilize();
+			component->Initialize();
 
 		}
 		for (auto& child : m_children)

@@ -13,8 +13,8 @@ namespace neu
 		virtual void OnCollisionEnter(Actor* other) override;
 		virtual void OnCollisionExit(Actor* other) override;
 
-		virtual void Write(const rapidjson::Value& value) const override;
-		virtual void Read(const rapidjson::Value& value) override;
+		virtual bool Write(const rapidjson::Value& value) const override;
+		virtual bool Read(const rapidjson::Value& value) override;
 
 	private:
 		PhysicsSystem::CollisionData data;

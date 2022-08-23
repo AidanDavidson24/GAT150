@@ -16,7 +16,7 @@ void neu::PlayerComponent::Update()
 		direction = Vector2::right;
 	}
 
-	float thrust = 0;
+	/*float thrust = 0;
 	if (g_inputSystem.GetKeyState(key_w) == InputSystem::State::Held)
 	{
 		thrust = 100;
@@ -25,12 +25,22 @@ void neu::PlayerComponent::Update()
 	if (g_inputSystem.GetKeyState(key_s) == InputSystem::State::Held)
 	{
 		thrust = -100;
-	}
+	}*/
 
 	auto component = m_owner->GetComponent<PhysicsComponent>();
 	if (component)
 	{
 		//Vector2 force = Vector2::Rotate({ 1, 0 }, neu::DegToRad(m_owner->m_transform.rotation)) * thrust;
-		component->ApplyForce(direction * speed);
+		component->ApplyForce(direction * 50);
 	}
+}
+
+bool neu::PlayerComponent::Write(const rapidjson::Value& value) const
+{
+	return false;
+}
+
+bool neu::PlayerComponent::Read(const rapidjson::Value& value)
+{
+	return false;
 }

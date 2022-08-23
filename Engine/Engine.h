@@ -12,13 +12,15 @@
 
 #include "Framework/Scene.h"
 #include "Framework/Game.h"
+#include "Framework/Factory.h"
 
 #include "PlayerComponent.h"
 #include "SpriteComponent.h"
 #include "AudioComponent.h"
 #include "PhysicsComponent.h"
 #include "ModelComponent.h"
-#include "CollisionComponent.h"
+#include "Components/CollisionComponent.h"
+#include "Components/SpriteAnimComponent.h"
 
 #include "Input/InputSystem.h"
 #include "Renderer/Renderer.h"
@@ -31,6 +33,7 @@
 #include "Renderer/Model.h"
 #include "Physics/PhysicsSystem.h"
 #include "Components/RBPhysicsComponent.h"
+#include "Framework/Singleton.h"
 
 #include "AudioSystem.h"
 #include "Resource/ResourceManager.h"
@@ -47,4 +50,10 @@ namespace neu
 	extern AudioSystem g_audioSystem;
 	extern ResourceManager g_resources;
 	extern PhysicsSystem g_physicsSystem;
+	
+	class Engine : public Singleton<Engine>
+	{
+	public:
+		void Register();
+	};
 }

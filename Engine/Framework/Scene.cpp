@@ -1,5 +1,6 @@
 #include "Scene.h"
 #include "Factory.h"
+#include "Actor.h"
 
 #include <iostream>
 #include <algorithm>
@@ -8,7 +9,7 @@ namespace neu
 {
 	void Scene::Initialize()
 	{
-		for (auto& actor : m_actors) { actor->Initilize(); }
+		for (auto& actor : m_actors) { actor->Initialize(); }
 	}
 	void Scene::Update()
 	{

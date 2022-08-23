@@ -1,25 +1,33 @@
 #pragma once
+#include "RenderComponent.h"
+#include "Rect.h"
 
 namespace neu
 {
-    frameTimer += g_time.deltaTime;
-    if (frameTimer >= 1.0f / fps)
-    {
-        frameTimer = 0;
-        frame++;
-        if (frame > end_frame)
-        {
-            frame = start_frame;
-        }
-    }
+	class Texture;
 
-    Vector2 cellSize = m_texture->GetSize() / Vector2{ num_columns, num_rows };
+	class SpriteAnimComponent : public RenderComponent
+	{
+	public:
+		virtual void Update() override;
+		virtual void Draw(Renderer& renderer) override;
 
-    int column = (frame - 1) % num_columns;
-    int row = (frame - 1) / num_columns;
+		virtual bool Write(const rapidjson::Value& value) const override;
+		virtual bool Read(const rapidjson::Value& value) override;
 
-    rect.x = (int)(column * cellSize.x);
-    rect.y = (int)(row * cellSize.y);
-    rect.w = (int)(cellSize.x);
-    rect.h = (int)(cellSize.y);
+	public:
+		float fps = 0;
+		int num_columns = 0;
+		int num_rows = 0;
+
+		int start_frame = 0;
+		int end_frame = 0;
+
+
+		int frame = 0;
+		float frameTimer = 0;
+
+		Rect source;
+		std::shared_ptr<Texture> m_texture;
+	};
 }

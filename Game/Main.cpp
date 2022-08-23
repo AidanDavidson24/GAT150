@@ -18,8 +18,6 @@ int main()
 	bool success = neu::json::Load("json.txt", document);
 	assert(success);
 
-	scene.Read(document);
-	scene.Initialize();
 
 	std::string str;
 	neu::json::Get(document, "string", str);
@@ -66,6 +64,10 @@ int main()
 	//model->Create("Assets/enemy.txt");
 
 	neu::Scene scene;
+
+	scene.Read(document);
+	scene.Initialize();
+
 
 	neu::Transform transform{ neu::Vector2{400,300 }, 90, { 1, 1} };
 	std::unique_ptr<neu::Actor> actor = std::make_unique <neu::Actor>(transform);

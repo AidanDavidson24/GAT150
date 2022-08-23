@@ -23,19 +23,13 @@ namespace neu
 	{
 	}
 
-	void CollisionComponent::Write(const rapidjson::Value& value) const
+	bool CollisionComponent::Write(const rapidjson::Value& value) const
 	{
 		return true;
 	}
 
-	void CollisionComponent::Read(const rapidjson::Value& value)
+	bool CollisionComponent::Read(const rapidjson::Value& value)
 	{
-		Vector2 size;
-		float density = 1;
-		float friction = 1;
-		float restitution = 0.3f;
-		bool is_trigger = false;
-
 		READ_DATA(value, data.size);
 		READ_DATA(value, data.density);
 		READ_DATA(value, data.friction);
