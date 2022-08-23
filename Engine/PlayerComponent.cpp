@@ -8,12 +8,12 @@ void neu::PlayerComponent::Update()
 
 	if (g_inputSystem.GetKeyState(key_a) == InputSystem::State::Held)
 	{
-		m_owner->m_transform.rotation -= 180 * g_time.deltaTime;
+		direction = Vector2::left;
 	}
 
 	if (g_inputSystem.GetKeyState(key_d) == InputSystem::State::Held)
 	{
-		m_owner->m_transform.rotation += 180 * g_time.deltaTime;
+		direction = Vector2::right;
 	}
 
 	float thrust = 0;
@@ -30,7 +30,7 @@ void neu::PlayerComponent::Update()
 	auto component = m_owner->GetComponent<PhysicsComponent>();
 	if (component)
 	{
-		Vector2 force = Vector2::Rotate({ 1, 0 }, neu::DegToRad(m_owner->m_transform.rotation)) * thrust;
-		component->ApplyForce(force);
+		//Vector2 force = Vector2::Rotate({ 1, 0 }, neu::DegToRad(m_owner->m_transform.rotation)) * thrust;
+		component->ApplyForce(direction * speed);
 	}
 }

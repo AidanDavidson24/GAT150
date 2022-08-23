@@ -18,6 +18,7 @@
 #include "AudioComponent.h"
 #include "PhysicsComponent.h"
 #include "ModelComponent.h"
+#include "CollisionComponent.h"
 
 #include "Input/InputSystem.h"
 #include "Renderer/Renderer.h"
@@ -28,6 +29,8 @@
 #include "AudioSystem.h"
 #include "Texture.h"
 #include "Renderer/Model.h"
+#include "Physics/PhysicsSystem.h"
+#include "Components/RBPhysicsComponent.h"
 
 #include "AudioSystem.h"
 #include "Resource/ResourceManager.h"
@@ -43,4 +46,5 @@ namespace neu
 	extern Time g_time;
 	extern AudioSystem g_audioSystem;
 	extern ResourceManager g_resources;
+	extern PhysicsSystem g_physicsSystem;
 }

@@ -1,4 +1,6 @@
 #pragma once
+#include "Singleton.h"
+
 #include <memory>
 #include <map>
 #include <string>
@@ -10,7 +12,7 @@ namespace neu
 	class CreatorBase
 	{
 	public:
-		virtual std::unique_ptr<GameObject>Create() = 0;
+		virtual std::unique_ptr <GameObject>Create() = 0;
 	};
 
 	template <typename T>
@@ -18,11 +20,11 @@ namespace neu
 	{
 		std::unique_ptr<GameObject>Create() override
 		{
-			return std::unique_ptr<GameObject>();
+			return std::make_unique<T>();
 		}
 	};
 
-	class Factory
+	class Factory : public Singleton<Factory>
 	{
 	public:
 		template <typename T>
@@ -33,19 +35,22 @@ namespace neu
 	private:
 		std::map<std::stringbuf, std::unique_ptr<CreatorBase>> m_registry;
 	};
+
 	template<typename T>
 	inline void Factory::Register(const std::string& key)
 	{
 		m_registry[key] = std::make_unique<Creator<T>>();
 	}
+
 	template<typename T>
 	inline std::unique_ptr<T> Factory::Create(const std::string& key)
 	{
 		auto iter = m_registry.find(key);
 		if (iter != m_registry.end())
 		{
-			return std::unique_ptr<T>(dynamic_cast<T*>(iter->second->Create().release());
+			return std::unique_ptr<T>(dynamic_cast<T*> (iter->second->Create().release()));
 		}
 
 		return std::unique_ptr<T>();
 	}
+}

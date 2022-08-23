@@ -7,4 +7,10 @@ namespace neu
 	AudioSystem g_audioSystem;
 	Time g_time;
 	ResourceManager g_resources;
+	PhysicsSystem g_physicsSystem;
+
+	void Engine::Register()
+	{
+		REGISTER_CLASS(Actor);
+	}
 }

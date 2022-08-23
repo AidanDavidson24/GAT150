@@ -1,10 +1,15 @@
 #include "Scene.h"
 #include "Factory.h"
-#include "iostream"
+
+#include <iostream>
 #include <algorithm>
 
 namespace neu
 {
+	void Scene::Initialize()
+	{
+		for (auto& actor : m_actors) { actor->Initilize(); }
+	}
 	void Scene::Update()
 	{
 		auto iter = m_actors.begin();
@@ -45,6 +50,7 @@ namespace neu
 			actor->Draw(renderer);
 		}
 	}
+
 	void Scene::Add(std::unique_ptr<Actor> actor)
 	{
 		actor->m_scene = this;

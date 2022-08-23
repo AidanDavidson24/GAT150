@@ -16,6 +16,7 @@ namespace neu
 		Actor() = default;
 		Actor(const Transform& transform) : m_transform{ transform }  {}
 
+		virtual void Initialize() override;
 		virtual void Update() override;
 		virtual void Draw(Renderer& renderer);
 
@@ -28,7 +29,12 @@ namespace neu
 		virtual void OnCollision(Actor* other) {}
 		float GetRadius() { return 0; }// m_model.GetRadius();
 	
-		std::string& GetTag() { return m_tag; }
+		const std::string& GetTag() { return tag; }
+		void SetTag(const std::string& tag) { this->tag = tag; }
+
+		const std::string& GetName() { return name; }
+		void SetName(const std::string& name) { this->name = name; }
+
 
 		friend class Scene;
 		friend class Component;
@@ -36,7 +42,9 @@ namespace neu
 		Transform m_transform;
 
 	protected:
-		std::string m_tag;
+		std::string tag;
+		std::string name;
+
 		bool m_destroy = false;
 		Vector2 m_velocity;
 		float m_damping = 1;

@@ -19,6 +19,7 @@ int main()
 	assert(success);
 
 	scene.Read(document);
+	scene.Initialize();
 
 	std::string str;
 	neu::json::Get(document, "string", str);
@@ -103,6 +104,7 @@ int main()
 		neu::g_time.Tick();
 		neu::g_inputSystem.Update();
 		neu::g_audioSystem.Update();
+		neu::g_physicsSystem.Update();
 
 		if (neu::g_inputSystem.GetKeyDown(neu::key_escape)) quit = true;
 		
@@ -119,6 +121,7 @@ int main()
 
 	neu::g_renderer.Shutdown();
 	neu::g_audioSystem.Shutdown();
+	neu::g_physicsSystem.Shutdown();
 
 
 }

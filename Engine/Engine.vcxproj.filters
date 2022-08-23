@@ -36,6 +36,9 @@
     <Filter Include="Serialization">
       <UniqueIdentifier>{69ae490e-af6c-4611-b3a1-9c301ebb583e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Physics">
+      <UniqueIdentifier>{50f50e6e-3b61-4b9a-8174-1ce5333bbcc8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Math\MathUtils.cpp">
@@ -115,6 +118,15 @@
     </ClCompile>
     <ClCompile Include="Math\Vector2.cpp">
       <Filter>Source\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\PhysicsSystem.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\RBPhysicsComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\CollisionComponent.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -218,9 +230,6 @@
     <ClInclude Include="Resource.h">
       <Filter>Resources</Filter>
     </ClInclude>
-    <ClInclude Include="Factory.h">
-      <Filter>Source\Input\Framework</Filter>
-    </ClInclude>
     <ClInclude Include="Serialization\Json.h">
       <Filter>Serialization</Filter>
     </ClInclude>
@@ -231,6 +240,24 @@
       <Filter>Source\Math</Filter>
     </ClInclude>
     <ClInclude Include="Components\SpriteAnimComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Factory.h">
+      <Filter>Source\Input\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Singleton.h">
+      <Filter>Source\Input\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\PhysicsSystem.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\RBPhysicsComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\Collision.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\CollisionComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>

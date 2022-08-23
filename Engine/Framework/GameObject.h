@@ -16,6 +16,9 @@ namespace neu
 
 		Transform m_transform;
 
+		virtual void Initilize() = 0;
+		virtual void Update() = 0;
+
 	protected:
 
 	};
