@@ -8,7 +8,7 @@ namespace neu
 		auto component = m_owner->GetComponent<RBPhysicsComponent>();
 		if (component)
 		{
-			g_physicsSystem.SetCollisionBox(nullptr, data, m_owner);
+			g_physicsSystem.SetCollisionBox(component->m_body, data, m_owner);
 		}
 	}
 	void CollisionComponent::Update()
