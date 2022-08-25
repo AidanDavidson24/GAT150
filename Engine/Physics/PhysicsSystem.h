@@ -1,10 +1,13 @@
 #pragma once
 #include "Math/Vector2.h"
+#include "ContactListener.h"
 #include "box2d/box2d.h"
 #include <memory> 
 
 namespace neu
 {
+	class ContactListener;
+
 	class PhysicsSystem
 	{
 	public:
@@ -43,5 +46,6 @@ namespace neu
 		static const float pixelsPerUnit;
 
 		std::unique_ptr<b2World> m_world;
+		std::unique_ptr<ContactListener> m_contactlistener;
 	};
 }

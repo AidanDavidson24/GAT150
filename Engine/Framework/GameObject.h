@@ -15,6 +15,7 @@ namespace neu
 
 		Transform m_transform;
 
+		virtual std::unique_ptr<GameObject> Clone() = 0;
 		virtual void Initialize() = 0;
 		virtual void Update() = 0;
 	protected:

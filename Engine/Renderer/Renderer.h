@@ -11,6 +11,8 @@ struct SDL_Window;
 
 namespace neu
 {
+	struct Rect;
+
 	class Renderer
 	{
 	public:
@@ -30,7 +32,7 @@ namespace neu
 		void DrawPoint(const Vector2& v, const Color& color);
 		//void Draw(std::shared_ptr<Texture> texture, const Vector2& position, float angle = 0);
 		//void Draw(std::shared_ptr<Texture> texture, const Transform& transform);
-		//void Draw(std::shared_ptr<Texture> texture, const SDL_Rect source, const Transform& transform);
+		void Draw(std::shared_ptr<Texture> texture, const Rect& source, const Transform& transform);
 		void Draw(Renderer& renderer, std::shared_ptr<Texture> texture, const Vector2& position, float angle, Vector2& scale);
 		void Draw(Renderer& renderer, std::shared_ptr<Texture> texture, const Transform& transform);
 

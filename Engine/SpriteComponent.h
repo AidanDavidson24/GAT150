@@ -1,9 +1,11 @@
 #pragma once
 #include "RenderComponent.h"
+#include "Rect.h"
 
 namespace neu
 {
 	class Texture;
+
 	class SpriteComponent : public RenderComponent
 	{
 	public:
@@ -14,7 +16,7 @@ namespace neu
 		virtual bool Read(const rapidjson::Value& value) override;
 
 	public:
+		Rect source;
 		std::shared_ptr<Texture> m_texture;
-
 	};
 }

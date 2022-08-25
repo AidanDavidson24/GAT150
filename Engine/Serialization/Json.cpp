@@ -158,4 +158,25 @@ namespace neu::json
 
 		return true;
 	}
+	bool Get(const rapidjson::Value& value, const std::string& name, Rect& data)
+	{
+		// check if 'name' member exists and is an array with 2 elements 
+		if (value.HasMember(name.c_str()) == false || value[name.c_str()].IsArray()
+			== false || value[name.c_str()].Size() != 3)
+		{
+			LOG("error reading json data %s", name.c_str());
+			return false;
+
+		}
+
+		// create json array object 
+		auto& array = value[name.c_str()];
+
+		data.x = array[0].GetInt();
+		data.y = array[1].GetInt();
+		data.w = array[2].GetInt();
+		data.h = array[3].GetInt();
+
+		return true;
+	}
 }

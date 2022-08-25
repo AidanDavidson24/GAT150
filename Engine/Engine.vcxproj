@@ -157,6 +157,7 @@
   <ItemGroup>
     <ClCompile Include="AudioComponent.cpp" />
     <ClCompile Include="AudioSystem.cpp" />
+    <ClCompile Include="Audio\AudioChannel.cpp" />
     <ClCompile Include="Components\CollisionComponent.cpp" />
     <ClCompile Include="Components\RBPhysicsComponent.cpp" />
     <ClCompile Include="Components\SpriteAnimComponent.cpp" />
@@ -176,6 +177,7 @@
     <ClCompile Include="Matrix3x3.cpp" />
     <ClCompile Include="ModelComponent.cpp" />
     <ClCompile Include="PhysicsComponent.cpp" />
+    <ClCompile Include="Physics\ContactListener.cpp" />
     <ClCompile Include="Physics\PhysicsSystem.cpp" />
     <ClCompile Include="PlayerComponent.cpp" />
     <ClCompile Include="Renderer\Model.cpp" />
@@ -189,6 +191,7 @@
   <ItemGroup>
     <ClInclude Include="AudioComponent.h" />
     <ClInclude Include="AudioSystem.h" />
+    <ClInclude Include="Audio\AudioChannel.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Components\CollisionComponent.h" />
     <ClInclude Include="Components\RBPhysicsComponent.h" />
@@ -215,6 +218,7 @@
     <ClInclude Include="ModelComponent.h" />
     <ClInclude Include="PhysicsComponent.h" />
     <ClInclude Include="Physics\Collision.h" />
+    <ClInclude Include="Physics\ContactListener.h" />
     <ClInclude Include="Physics\PhysicsSystem.h" />
     <ClInclude Include="PlayerComponent.h" />
     <ClInclude Include="Rect.h" />

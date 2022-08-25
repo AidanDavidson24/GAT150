@@ -64,11 +64,11 @@ namespace neu
 
 	bool Scene::Read(const rapidjson::Value& value)
 	{
-		if (!value.HasMember("actors") || !value.IsArray())
+		if (!value.HasMember("actors") || !value["actors"].IsArray())
 		{
 			return false;
 		}
-		for (auto& actorValue : value.GetArray())
+		for (auto& actorValue : value["actors"].GetArray())
 		{
 			std::string type;
 			READ_DATA(actorValue, type);
@@ -78,6 +78,7 @@ namespace neu
 			{
 				// read actor
 				actor->Read(actorValue);
+				Add(std::move(actor));
 			}
 		}
 		return true;

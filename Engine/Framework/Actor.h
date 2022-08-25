@@ -16,6 +16,8 @@ namespace neu
 		Actor() = default;
 		Actor(const Transform& transform) : m_transform{ transform }  {}
 
+		std::unique_ptr<GameObject> Clone() { return std::make_unique<Actor>(); }
+
 		virtual void Initialize() override;
 		virtual void Update() override;
 		virtual void Draw(Renderer& renderer);

@@ -1,5 +1,6 @@
 #include "Actor.h"
 #include "RenderComponent.h"
+#include "Factory.h"
 #include "../Math/MathUtils.h"
 
 namespace neu
@@ -69,6 +70,16 @@ namespace neu
 		READ_DATA(value, tag);
 		READ_DATA(value, name);
 
+		if (value.HasMember("transform")) m_transform.Read(value["transform"]);      
+		if (value.HasMember("components") && value["components"].IsArray()) 
+		{ for (auto& componentValue : value["components"].GetArray()) { std::string type;              
+		READ_DATA(componentValue, type);              
+		auto component = Factory::Instance().Create<Component>(type);              
+		if (component) 
+		{ component->Read(componentValue);
+		AddComponent(std::move(component)); } 
+		} 
+	}
 		return true;
 	}
 }

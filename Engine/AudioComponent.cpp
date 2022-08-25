@@ -1,15 +1,55 @@
 #include "AudioComponent.h"
+#include "Audio/AudioChannel.h"
+#include "Engine.h" 
 
-void neu::AudioComponent::Update()
+namespace neu
 {
-}
+	AudioComponent::~AudioComponent()
+	{
+		Stop();
+	}
 
-bool neu::AudioComponent::Write(const rapidjson::Value& value) const
-{
-    return false;
-}
+	void AudioComponent::Initialize()
+	{
+		if (play_on_start)
+		{
+			Play();
+		}
+	}
 
-bool neu::AudioComponent::Read(const rapidjson::Value& value)
-{
-    return false;
+	void AudioComponent::Update()
+	{
+	}
+
+	void AudioComponent::Play()
+	{
+		Stop();
+
+		g_audioSystem.PlayAudio(sound_name, volume, pitch, loop);
+	}
+
+	void AudioComponent::Stop()
+	{
+		channel.Stop();
+	}
+
+	bool AudioComponent::Write(const rapidjson::Value& value) const
+	{
+		return true;
+	}
+
+	bool AudioComponent::Read(const rapidjson::Value& value)
+	{
+		// !! READ_DATA on sound_name, volume, ... 
+		READ_DATA(value, sound_name);
+		READ_DATA(value, loop);
+		READ_DATA(value, volume);
+		READ_DATA(value, pitch);
+		READ_DATA(value, play_on_start);
+
+
+		g_audioSystem.AddAudio(sound_name, sound_name);
+
+		return true;
+	}
 }

@@ -17,7 +17,20 @@
          "components":[
             {
                "type":"SpriteComponent",
-               "texture_name":"Textures/background.png"
+               "texture_name":"background.png"
+            }
+         ]
+      },
+  {
+         "type":"Actor",
+         "name":"Music",
+         "components":[
+            {
+               "type":"AudioComponent",
+               "sound_name":"music.mp3",
+               "loop":true,
+               "pitch":1,
+               "play_on_start":true
             }
          ]
       },
@@ -78,7 +91,7 @@
             },
             {
                "type":"SpriteAnimComponent",
-               "texture_name":"Textures/gothic-hero-run.png",
+               "texture_name":"gothic-hero-run.png",
                "fps":12,
                "num_columns":12,
                "num_rows":1,

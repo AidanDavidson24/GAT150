@@ -1,4 +1,5 @@
 #include "Renderer.h"
+#include "Rect.h"
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include <SDL_Image.h>
@@ -54,6 +55,21 @@ namespace neu
 		SDL_SetRenderDrawColor(m_renderer, 255, 255, 255, 255);
 		SDL_RenderDrawPointF(m_renderer, v.x, v.y);
 	}
+	void Renderer::Draw(std::shared_ptr<Texture> texture, const Rect& source, const Transform& transform)
+	{
+		Vector2 size = { source.w, source.w };
+		size = size * transform.scale;
+
+		SDL_Rect dest;
+		// !! make sure to cast to int to prevent compiler warnings 
+		dest.x = (int)transform.position.x;
+		dest.y = (int)transform.position.y;
+		dest.w = (int)size.x;
+		dest.h = (int)size.y;
+
+		SDL_RenderCopyEx(m_renderer, texture->m_texture, nullptr, &dest, transform.rotation, nullptr, SDL_FLIP_NONE);
+	}
+
 	void Renderer::Draw(Renderer& renderer, std::shared_ptr<Texture> texture, const Vector2& position, float angle, Vector2& scale)
 	{
 		Vector2 size = texture->GetSize();
