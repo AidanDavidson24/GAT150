@@ -36,7 +36,7 @@ namespace neu
 		void Draw(Renderer& renderer, std::shared_ptr<Texture> texture, const Vector2& position, float angle, Vector2& scale);
 		void Draw(Renderer& renderer, std::shared_ptr<Texture> texture, const Transform& transform);
 		void Draw(std::shared_ptr<Texture> texture, const Transform& transform, const Vector2& registration);
-		void Draw(std::shared_ptr<Texture> texture, const Rect& source, const Transform& transform, const Vector2& registration = Vector2{ 0.05f, 0.05f });
+		void Draw(std::shared_ptr<Texture> texture, const Rect& source, const Transform& transform, const Vector2& registration = Vector2{ 0.5f, 0.5f });
 
 		int GetWidth() { return m_width; }
 		int GetHeight() { return m_height; }

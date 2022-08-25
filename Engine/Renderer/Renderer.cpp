@@ -110,8 +110,8 @@ namespace neu
 
 		SDL_Rect dest;
 		// !! make sure to cast to int to prevent compiler warnings 
-		dest.x = (int)transform.position.x;
-		dest.y = (int)transform.position.y;
+		dest.x = (int)tposition.x;
+		dest.y = (int)tposition.y;
 		dest.w = (int)size.x;
 		dest.h = (int)size.y;
 
@@ -130,8 +130,8 @@ namespace neu
 
 		SDL_Rect dest;
 		// !! make sure to cast to int to prevent compiler warnings 
-		dest.x = (int)transform.position.x;
-		dest.y = (int)transform.position.y;
+		dest.x = (int)tposition.x;
+		dest.y = (int)tposition.y;
 		dest.w = (int)size.x;
 		dest.h = (int)size.y;
 

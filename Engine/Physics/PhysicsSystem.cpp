@@ -44,16 +44,17 @@ namespace neu
 		b2PolygonShape shape;
 		Vector2 worldSize = PhysicsSystem::ScreenToWorld(data.size * 0.5f);
 		shape.SetAsBox(worldSize.x, worldSize.y);
-		/*
-		b2Fixture fixtureDef;
+		
+
+		b2FixtureDef fixtureDef;
 		fixtureDef.density = data.density;
 		fixtureDef.friction = data.friction;
 		fixtureDef.restitution = data.restitution;
-		fixtureDef.IsSensor = data.is_trigger;
+		fixtureDef.isSensor = data.is_trigger;
 		fixtureDef.shape = &shape;
-		fistureDef.userData.pointer = reinterpret_cast<uintptr_t>(actor);
+		fixtureDef.userData.pointer = reinterpret_cast<uintptr_t>(actor);
 
 		body->CreateFixture(&fixtureDef);
-		*/
+		
 	}
 }

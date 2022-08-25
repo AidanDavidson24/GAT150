@@ -21,6 +21,7 @@ namespace neu
 		m_owner->m_transform.position = PhysicsSystem::WorldToScreen(position);
 		m_owner->m_transform.rotation = m_body->GetAngle();
 	}
+
 	void RBPhysicsComponent::ApplyForce(const Vector2& force)
 	{
 		b2Vec2 v{ force.x, force.y };

@@ -15,18 +15,21 @@ void neu::PlayerComponent::Update()
 	{
 		direction = Vector2::right;
 	}
-
-	/*float thrust = 0;
+	if (g_inputSystem.GetKeyState(key_w) == InputSystem::State::Press)
+	{
+		direction = Vector2::up;
+	}
+	/*
+	float thrust = 0;
 	if (g_inputSystem.GetKeyState(key_w) == InputSystem::State::Held)
 	{
 		thrust = 100;
 	}
-
 	if (g_inputSystem.GetKeyState(key_s) == InputSystem::State::Held)
 	{
 		thrust = -100;
-	}*/
-
+	}
+	*/
 	auto component = m_owner->GetComponent<PhysicsComponent>();
 	if (component)
 	{

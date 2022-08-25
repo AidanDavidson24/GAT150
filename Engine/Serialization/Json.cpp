@@ -117,7 +117,7 @@ namespace neu::json
 		// get array values 
 		for (rapidjson::SizeType i = 0; i < array.Size(); i++)
 		{
-			if (!array[i].IsFloat())
+			if (!array[i].IsNumber())
 			{
 
 				LOG("error reading json data (not a float) %s", name.c_str());

@@ -114,7 +114,7 @@
                   {
                      "type":"CollisionComponent",
                      "data.size":[
-                        48,
+                        48	,
                         48
                      ]
                   },
@@ -189,7 +189,7 @@
          "components":[
             {
                "type":"TextComponent",
-               "text":"Hello World!",
+               "text":"Score: ",
                "font_name":"fonts/Starjedi.ttf",
                "font_size":16,
                "registration":[
