@@ -78,7 +78,19 @@ namespace neu
 			{
 				// read actor
 				actor->Read(actorValue);
-				Add(std::move(actor));
+
+				bool prefab = false;
+				READ_DATA(actorValue, prefab);
+
+				if (prefab)
+				{
+					std::string name = actor->GetName();
+					Factory::Instance().RegisterPrefab(actor->GetName(), std::move(actor));
+				}
+				else
+				{
+					Add(std::move(actor));
+				}
 			}
 		}
 		return true;

@@ -41,6 +41,14 @@ int main()
 	scene.Read(document);
 	scene.Initialize();
 
+	/*for (int i = 0; i < 10; i++)
+	{
+		auto actor = neu::Factory::Instance().Create<neu::Actor>("Coin");
+		actor->m_transform.position = { neu::randomf(0,800), 100.0f };
+		actor->Initialize();
+
+		scene.Add(std::move(actor));
+	}*/
 	/*
 	neu::Transform transform{ neu::Vector2{400,300 }, 90, { 1, 1} };
 	std::unique_ptr<neu::Actor> actor = std::make_unique <neu::Actor>(transform);

@@ -1,6 +1,6 @@
 {
    "actors":[
-     {
+      {
          "type":"Actor",
          "name":"Background",
          "transform":{
@@ -21,7 +21,117 @@
             }
          ]
       },
-  {
+      {
+         "actors":[
+            {
+               "type":"Actor",
+               "name":"Background",
+               "transform":{
+                  "position":[
+                     400,
+                     300
+                  ],
+                  "scale":[
+                     1,
+                     1
+                  ],
+                  "rotation":0
+               },
+               "components":[
+                  {
+                     "type":"SpriteComponent",
+                     "texture_name":"background.png"
+                  }
+               ]
+            },
+            {
+               "type":"Actor",
+               "name":"Music",
+               "components":[
+                  {
+                     "type":"AudioComponent",
+                     "sound_name":"music.mp3",
+                     "loop":true,
+                     "pitch":1,
+                     "play_on_start":true
+                  }
+               ]
+            },
+            {
+               "type":"Actor",
+               "name":"Floor",
+               "transform":{
+                  "position":[
+                     400,
+                     540
+                  ],
+                  "scale":[
+                     1,
+                     1
+                  ],
+                  "rotation":0
+               },
+               "components":[
+                  {
+                     "type":"RBPhysicsComponent",
+                     "data.is_dynamic":false
+                  },
+                  {
+                     "type":"CollisionComponent",
+                     "data.size":[
+                        800,
+                        24
+                     ]
+                  }
+               ]
+            },
+            {
+               "type":"Actor",
+               "name":"Player",
+               "tag":"Player",
+               "transform":{
+                  "position":[
+                     400,
+                     300
+                  ],
+                  "scale":[
+                     1,
+                     1
+                  ],
+                  "rotation":0
+               },
+               "components":[
+                  {
+                     "type":"PlayerComponent",
+                     "speed":40
+                  },
+                  {
+                     "type":"RBPhysicsComponent",
+                     "damping":0.4,
+                     "data.gravity_scale":1,
+                     "data.constrain_angle":true
+                  },
+                  {
+                     "type":"CollisionComponent",
+                     "data.size":[
+                        48,
+                        48
+                     ]
+                  },
+                  {
+                     "type":"SpriteAnimComponent",
+                     "texture_name":"gothic-hero-run.png",
+                     "fps":12,
+                     "num_columns":12,
+                     "num_rows":1,
+                     "start_frame":1,
+                     "end_frame":12
+                  }
+               ]
+            }
+         ]
+      },
+      {
          "type":"Actor",
          "name":"Music",
          "components":[
@@ -55,7 +165,43 @@
             },
             {
                "type":"CollisionComponent",
-               "data.size": [800, 24]
+               "data.size":[
+                  800,
+                  24
+               ]
+            }
+         ]
+      },
+      {
+         "type":"Actor",
+         "name":"Text",
+         "transform":{
+            "position":[
+               40,
+               30
+            ],
+            "scale":[
+               1,
+               1
+            ],
+            "rotation":0
+         },
+         "components":[
+            {
+               "type":"TextComponent",
+               "text":"Hello World!",
+               "font_name":"fonts/Starjedi.ttf",
+               "font_size":16,
+               "registration":[
+                  0.0,
+                  0.5
+               ],
+               "color":[
+                  255,
+                  255,
+                  0,
+                  255
+               ]
             }
          ]
       },
@@ -87,7 +233,10 @@
             },
             {
                "type":"CollisionComponent",
-               "data.size": [48, 48]
+               "data.size":[
+                  48,
+                  48
+               ]
             },
             {
                "type":"SpriteAnimComponent",

@@ -7,6 +7,8 @@ namespace neu
 	class CollisionComponent : public Component, public ICollision
 	{
 	public:
+
+		CLASS_DECLARATION(CollisionComponent)
 		virtual void Initialize();
 		virtual void Update() override;
 

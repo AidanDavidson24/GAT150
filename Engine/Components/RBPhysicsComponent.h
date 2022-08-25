@@ -7,6 +7,7 @@ namespace neu
 	class RBPhysicsComponent : public PhysicsComponent
 	{
 	public:
+		CLASS_DECLARATION(RBPhysicsComponent)
 		RBPhysicsComponent() = default;
 		~RBPhysicsComponent();
 

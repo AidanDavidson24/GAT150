@@ -2,6 +2,8 @@
 #include "../Math/Transform.h"
 #include "Serialization/Serialization.h"
 
+#define CLASS_DECLARATION(class) \
+	std::unique_ptr<GameObject> Clone() { return std::make_unique<class>(*this); }
 #define REGISTER_CLASS(class) Factory::Instance().Register<class>(#class);
 namespace neu
 {

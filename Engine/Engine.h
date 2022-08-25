@@ -21,6 +21,7 @@
 #include "ModelComponent.h"
 #include "Components/CollisionComponent.h"
 #include "Components/SpriteAnimComponent.h"
+#include "Components/TextComponent.h"
 
 #include "Input/InputSystem.h"
 #include "Renderer/Renderer.h"

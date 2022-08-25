@@ -33,7 +33,7 @@ namespace neu
 		PrefabCreator(std::unique_ptr<T> instance) : m_instance{ std::move (instance) } {}
 		std::unique_ptr<GameObject> Create() override
 		{
-			return std::make_unique<T>();
+			return m_instance->Clone();
 		}
 	private:
 		std::unique_ptr<T> m_instance;

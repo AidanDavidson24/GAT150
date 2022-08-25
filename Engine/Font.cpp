@@ -1,5 +1,6 @@
 #include "Renderer/Font.h"
 #include <SDL_ttf.h>
+#include "Logger.h"
 
 namespace neu
 {
@@ -43,5 +44,17 @@ namespace neu
 		va_end(args);
 
 		return Load(filename, fontSize);
+	}
+
+	SDL_Surface* Font::CreateSurface(const std::string& text, const Color& color)
+	{
+		SDL_Color c = *((SDL_Color*)(&color));
+		SDL_Surface* surface = TTF_RenderText_Solid(m_ttfFont, text.c_str(), c); 
+		if (surface == nullptr)
+		{
+			LOG(SDL_GetError());
+		}
+
+		return surface;
 	}
 }

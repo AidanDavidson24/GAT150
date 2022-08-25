@@ -100,4 +100,24 @@ namespace neu
 		SDL_RenderCopyEx(m_renderer, texture->m_texture, nullptr, &dest, transform.rotation, nullptr, SDL_FLIP_NONE);
 	}
 
+	void Renderer::Draw(std::shared_ptr<Texture> texture, const Transform& transform, const Vector2& registration)
+	{
+		Vector2 size = texture->GetSize();
+		size = size * transform.scale;
+
+		Vector2 origin = size * registration;
+		Vector2 tposition = transform.position - origin;
+
+		SDL_Rect dest;
+		// !! make sure to cast to int to prevent compiler warnings 
+		dest.x = (int)transform.position.x;
+		dest.y = (int)transform.position.y;
+		dest.w = (int)size.x;
+		dest.h = (int)size.y;
+
+		SDL_Point center{ (int)origin.x, (int)origin.y };
+
+		SDL_RenderCopyEx(m_renderer, texture->m_texture, nullptr, &dest, transform.rotation, &center, SDL_FLIP_NONE);
+	}
+
 }

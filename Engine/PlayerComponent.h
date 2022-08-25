@@ -6,6 +6,7 @@ namespace neu
 	class PlayerComponent : public Component
 	{
 	public:
+		CLASS_DECLARATION(PlayerComponent)
 		PlayerComponent() = default;
 
 		void Update() override;
