@@ -31,7 +31,7 @@ void neu::SpriteAnimComponent::Update()
 
 void neu::SpriteAnimComponent::Draw(Renderer& renderer)
 {
-    renderer.Draw(renderer, m_texture, m_owner->m_transform);
+    renderer.Draw(m_texture, source ,m_owner->m_transform);
 }
 
 bool neu::SpriteAnimComponent::Write(const rapidjson::Value& value) const
