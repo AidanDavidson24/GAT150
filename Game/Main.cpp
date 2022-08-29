@@ -41,14 +41,13 @@ int main()
 	scene.Read(document);
 	scene.Initialize();
 
-	/*for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 10; i++)
 	{
 		auto actor = neu::Factory::Instance().Create<neu::Actor>("Coin");
 		actor->m_transform.position = { neu::randomf(0,800), 100.0f };
 		actor->Initialize();
 
 		scene.Add(std::move(actor));
-	}*/
 	/*
 	neu::Transform transform{ neu::Vector2{400,300 }, 90, { 1, 1} };
 	std::unique_ptr<neu::Actor> actor = std::make_unique <neu::Actor>(transform);
@@ -101,9 +100,15 @@ int main()
 		neu::g_renderer.EndFrame();
 	}
 
+
+	scene.RemoveAll();
+	neu::Factory::Instance().Shutdown();
+
 	neu::g_renderer.Shutdown();
 	neu::g_audioSystem.Shutdown();
 	neu::g_physicsSystem.Shutdown();
+	neu::g_inputSystem.Shutdown();
+	neu::g_resources.Shutdown();
 
 
 }

@@ -31,6 +31,8 @@ namespace neu
 	}
 	void Actor::Update()
 	{
+		if (!active) return;
+
 		for (auto& component : m_components)
 		{
 			component->Update();
@@ -46,6 +48,8 @@ namespace neu
 
 	void Actor::Draw(Renderer& renderer)
 	{
+		if (!active) return;
+
 		//m_model.Draw(renderer, m_transform.position, m_transform.rotation, m_transform.scale);
 		for (auto& component : m_components)
 		{
@@ -81,6 +85,7 @@ namespace neu
 	{
 		READ_DATA(value, tag);
 		READ_DATA(value, name);
+		READ_DATA(value, active);
 
 		if (value.HasMember("transform")) m_transform.Read(value["transform"]);      
 		if (value.HasMember("components") && value["components"].IsArray()) 
