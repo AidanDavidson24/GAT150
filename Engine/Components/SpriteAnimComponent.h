@@ -1,6 +1,6 @@
 #pragma once
 #include "RenderComponent.h"
-#include "Rect.h"
+#include "Math/Rect.h"
 
 namespace neu
 {
@@ -10,8 +10,11 @@ namespace neu
 	{
 	public:
 		CLASS_DECLARATION(SpriteAnimComponent)
+
 		virtual void Update() override;
 		virtual void Draw(Renderer& renderer) override;
+
+		virtual Rect& GetSource();
 
 		virtual bool Write(const rapidjson::Value& value) const override;
 		virtual bool Read(const rapidjson::Value& value) override;
@@ -28,7 +31,6 @@ namespace neu
 		int frame = 0;
 		float frameTimer = 0;
 
-		Rect source;
 		std::shared_ptr<Texture> m_texture;
 	};
 }

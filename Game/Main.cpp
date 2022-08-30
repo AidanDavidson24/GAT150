@@ -1,4 +1,5 @@
 #include "Engine.h"
+#include "Source Files/Platformer.h"
 #include <iostream>
 
 using namespace std;
@@ -20,11 +21,18 @@ int main()
 	neu::g_renderer.Initialize();
 	neu::g_resources.Initialize();
 	neu::g_physicsSystem.Initialize();
+	neu::g_eventManager.Initialize();
+
+	neu::Engine::Instance().Register();
 
 	neu::g_renderer.CreateWindow("Technoblade Neva Diessss", 800, 600);
 	neu::g_renderer.SetClearColor(neu::Color{ 10, 10, 10, 255 });
 
-	neu::Engine::Instance().Register();
+
+	std::unique_ptr<Platformer> game = std::make_unique<Platformer>();
+	game->Initialize();
+
+
 	//std::shared_ptr<neu::Texture> texture = neu::g_resources.Get<neu::Texture>("sf2.bmp", neu::g_renderer);
 	//texture->Create(neu::g_renderer, "sf2.bmp");
 	//neu::g_audioSystem.AddAudio("Fart")
@@ -34,20 +42,6 @@ int main()
 
 	neu::Scene scene;
 
-	rapidjson::Document document;
-	bool success = neu::json::Load("level.txt", document);
-	assert(success);
-
-	scene.Read(document);
-	scene.Initialize();
-
-	for (int i = 0; i < 10; i++)
-	{
-		auto actor = neu::Factory::Instance().Create<neu::Actor>("Coin");
-		actor->m_transform.position = { neu::randomf(0,800), 100.0f };
-		actor->Initialize();
-
-		scene.Add(std::move(actor));
 	/*
 	neu::Transform transform{ neu::Vector2{400,300 }, 90, { 1, 1} };
 	std::unique_ptr<neu::Actor> actor = std::make_unique <neu::Actor>(transform);
@@ -88,20 +82,23 @@ int main()
 		neu::g_inputSystem.Update();
 		neu::g_audioSystem.Update();
 		neu::g_physicsSystem.Update();
+		neu::g_eventManager.Update();
 
 		if (neu::g_inputSystem.GetKeyDown(neu::key_escape)) quit = true;
 		
-		scene.Update();
+		game->Update();
 
 		neu::g_renderer.BeginFrame();
 
-		scene.Draw(neu::g_renderer);
+		game->Draw(neu::g_renderer);
 
 		neu::g_renderer.EndFrame();
 	}
 
 
-	scene.RemoveAll();
+	game->Shutdown();
+	game.reset();
+
 	neu::Factory::Instance().Shutdown();
 
 	neu::g_renderer.Shutdown();
@@ -109,6 +106,7 @@ int main()
 	neu::g_physicsSystem.Shutdown();
 	neu::g_inputSystem.Shutdown();
 	neu::g_resources.Shutdown();
+	neu::g_eventManager.Shutdown();
 
 
 }

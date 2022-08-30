@@ -1,5 +1,5 @@
 #include "Json.h"
-#include "Logger.h"
+#include "Core/Logger.h"
 #include "rapidjson/document.h"
 #include "rapidjson/istreamwrapper.h"
 #include "Engine.h"
@@ -32,6 +32,7 @@ namespace neu::json
 
 	bool Get(const rapidjson::Value& value, const std::string& name, int& data)
 	{
+		if (!value.HasMember(name.c_str())) return false;
 		// check if 'name' member exists and is of type 
 
 		if (value.HasMember(name.c_str()) == false || value[name.c_str()].IsInt() ==
@@ -49,6 +50,7 @@ namespace neu::json
 
 	bool Get(const rapidjson::Value& value, const std::string& name, float& data)
 	{
+		if (!value.HasMember(name.c_str())) return false;
 		// check if 'name' member exists and is of type 
 
 		if (value.HasMember(name.c_str()) == false || value[name.c_str()].IsNumber() ==
@@ -67,6 +69,7 @@ namespace neu::json
 
 	bool Get(const rapidjson::Value& value, const std::string& name, bool& data)
 	{
+		if (!value.HasMember(name.c_str())) return false;
 		// check if 'name' member exists and is of type 
 
 		if (value.HasMember(name.c_str()) == false || value[name.c_str()].IsBool() ==
@@ -85,6 +88,7 @@ namespace neu::json
 
 	bool Get(const rapidjson::Value& value, const std::string& name, std::string& data)
 	{
+		if (!value.HasMember(name.c_str())) return false;
 		// check if 'name' member exists and is of type 
 
 		if (value.HasMember(name.c_str()) == false || value[name.c_str()].IsString() ==
@@ -103,6 +107,7 @@ namespace neu::json
 
 	bool Get(const rapidjson::Value& value, const std::string& name, Vector2& data)
 	{
+		if (!value.HasMember(name.c_str())) return false;
 		// check if 'name' member exists and is an array with 2 elements 
 		if (value.HasMember(name.c_str()) == false || value[name.c_str()].IsArray()
 			== false || value[name.c_str()].Size() != 2)
@@ -132,6 +137,7 @@ namespace neu::json
 
 	bool Get(const rapidjson::Value& value, const std::string& name, Color& data)
 	{
+		if (!value.HasMember(name.c_str())) return false;
 		// check if 'name' member exists and is an array with 2 elements 
 		if (value.HasMember(name.c_str()) == false || value[name.c_str()].IsArray()
 			== false || value[name.c_str()].Size() != 3)
@@ -160,9 +166,11 @@ namespace neu::json
 	}
 	bool Get(const rapidjson::Value& value, const std::string& name, Rect& data)
 	{
+		if (!value.HasMember(name.c_str())) return false;
+
 		// check if 'name' member exists and is an array with 2 elements 
 		if (value.HasMember(name.c_str()) == false || value[name.c_str()].IsArray()
-			== false || value[name.c_str()].Size() != 3)
+			== false || value[name.c_str()].Size() != 4)
 		{
 			LOG("error reading json data %s", name.c_str());
 			return false;
@@ -176,6 +184,62 @@ namespace neu::json
 		data.y = array[1].GetInt();
 		data.w = array[2].GetInt();
 		data.h = array[3].GetInt();
+
+		return true;
+	}
+	bool Get(const rapidjson::Value& value, const std::string& name, std::vector<std::string>& data)
+	{
+		if (!value.HasMember(name.c_str())) return false;
+
+		if (!value[name.c_str()].IsArray())
+		{
+			LOG("error reading json data %s", name.c_str());
+			return true;
+
+		}
+
+		// create json array object 
+		auto& array = value[name.c_str()];
+		// get array values 
+		for (rapidjson::SizeType i = 0; i < array.Size(); i++)
+		{
+			if (!array[i].IsString())
+			{
+
+				LOG("error reading json data (not a string) %s", name.c_str());
+				return false;
+			}
+
+			data.push_back(array[i].GetString());
+		}
+
+		return true;
+	}
+	bool Get(const rapidjson::Value& value, const std::string& name, std::vector<int>& data)
+	{
+		if (!value.HasMember(name.c_str())) return false;
+
+		if (!value[name.c_str()].IsArray())
+		{
+			LOG("error reading json data %s", name.c_str());
+			return false;
+
+		}
+
+		// create json array object 
+		auto& array = value[name.c_str()];
+		// get array values 
+		for (rapidjson::SizeType i = 0; i < array.Size(); i++)
+		{
+			if (!array[i].IsInt())
+			{
+
+				LOG("error reading json data (not an int) %s", name.c_str());
+				return false;
+			}
+
+			data.push_back(array[i].GetInt());
+		}
 
 		return true;
 	}

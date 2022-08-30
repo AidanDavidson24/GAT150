@@ -6,10 +6,18 @@ void Platformer::Initialize()
 	m_scene = std::make_unique<neu::Scene>();
 
 	rapidjson::Document document;
-	bool success = neu::json::Load("level.txt", document);
-	assert(success);
+	std::vector<std::string> sceneNames = { "scenes/prefabs.txt","scenes/tilemap.txt","scenes/level.txt"};
 
-	m_scene->Read(document);
+	for (auto sceneName : sceneNames)
+	{
+		bool success = neu::json::Load(sceneName, document);
+		if (!success)
+		{
+			LOG("could not load scene %s", sceneName);
+			continue;
+		}
+		m_scene->Read(document);
+	}
 	m_scene->Initialize();
 
 	for (int i = 0; i < 10; i++)
@@ -20,19 +28,53 @@ void Platformer::Initialize()
 
 		m_scene->Add(std::move(actor));
 	}
+
+	neu::g_eventManager.Subscribe("EVENT ADD POINTS", std::bind(&Platformer::OnAddPoints, this, std::placeholders::_1));
 }
 
 void Platformer::Shutdown()
 {
-
+	m_scene->RemoveAll();
 }
 
 void Platformer::Update()
 {
+	switch (m_gameState)
+	{
+	case Platformer::gameState::titleScreen:
+		if (neu::g_inputSystem.GetKeyState(neu::key_space) == neu::InputSystem::State::Press)
+		{
+			//m_scene->GetActorFromName
+		}
+		break;
+	case Platformer::gameState::startLevel:
+		break;
+	case Platformer::gameState::game:
+		break;
+	case Platformer::gameState::playerDead:
+		break;
+	case Platformer::gameState::gameOver:
+		break;
+	default:
+		break;
+	}
 	m_scene->Update();
 }
 
 void Platformer::Draw(neu::Renderer& renderer)
 {
 	m_scene->Draw(renderer);
+}
+
+void Platformer::OnAddPoints(const neu::Event& event)
+{
+	std::cout << event.name << std::endl;
+	std::cout << std::get<int>(event.data) << std::endl;
+}
+
+void Platformer::OnPlayerDead(const neu::Event& event)
+{
+	m_gameState = gameState::playerDead;
+	m_stateTimer = 3;
+	m_lives--;
 }

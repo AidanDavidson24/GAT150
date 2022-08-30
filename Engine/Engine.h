@@ -14,34 +14,37 @@
 #include "Framework/Game.h"
 #include "Framework/Factory.h"
 
-#include "PlayerComponent.h"
-#include "SpriteComponent.h"
-#include "AudioComponent.h"
-#include "PhysicsComponent.h"
-#include "ModelComponent.h"
+#include "Components/PlayerComponent.h"
+#include "Components/SpriteComponent.h"
+#include "Components/AudioComponent.h"
+#include "Components/PhysicsComponent.h"
+#include "Components/ModelComponent.h"
 #include "Components/CollisionComponent.h"
 #include "Components/SpriteAnimComponent.h"
 #include "Components/TextComponent.h"
+#include "Components/TilemapComponent.h"
 
 #include "Input/InputSystem.h"
 #include "Renderer/Renderer.h"
-#include "Logger.h"
+#include "Core/Logger.h"
 
-#include "..\Engine\Renderer\Font.h"
-#include "../Engine/Text.h"
-#include "AudioSystem.h"
-#include "Texture.h"
+#include "Renderer\Font.h"
+#include "Renderer/Text.h"
+#include "Audio/AudioSystem.h"
+#include "Renderer/Texture.h"
 #include "Renderer/Model.h"
 #include "Physics/PhysicsSystem.h"
 #include "Components/RBPhysicsComponent.h"
 #include "Framework/Singleton.h"
+#include "Framework/EventManager.h"
 
-#include "AudioSystem.h"
+#include "Audio/AudioSystem.h"
 #include "Resource/ResourceManager.h"
 
 #include <memory>
 #include <vector>
 #include <list>
+#include <variant>
 
 namespace neu
 {
@@ -51,6 +54,7 @@ namespace neu
 	extern AudioSystem g_audioSystem;
 	extern ResourceManager g_resources;
 	extern PhysicsSystem g_physicsSystem;
+	extern EventManager g_eventManager;
 	
 	class Engine : public Singleton<Engine>
 	{

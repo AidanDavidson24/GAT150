@@ -1,5 +1,5 @@
 #pragma once
-#include "Component.h"
+#include "Framework/Component.h"
 #include "Physics/Collision.h"
 #include "Physics/PhysicsSystem.h"
 namespace neu

@@ -1,7 +1,7 @@
 #include "Engine.h"
 #include "fmod.hpp"
 #include "AudioChannel.h"
-#include "AudioComponent.h"
+#include "Components/AudioComponent.h"
 
 
 namespace neu

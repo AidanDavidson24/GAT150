@@ -57,6 +57,13 @@ namespace neu
 		actor->m_scene = this;
 		m_actors.push_back(std::move(actor));
 	}
+
+	void Scene::RemoveAll()
+	{
+		for (auto& actor : m_actors) { actor->SetDestroy(); }
+		m_actors.clear();
+	}
+
 	bool Scene::Write(const rapidjson::Value& value) const
 	{
 		return true;
@@ -85,7 +92,7 @@ namespace neu
 				if (prefab)
 				{
 					std::string name = actor->GetName();
-					Factory::Instance().RegisterPrefab(actor->GetName(), std::move(actor));
+					Factory::Instance().RegisterPrefab(name, std::move(actor));
 				}
 				else
 				{

@@ -1,5 +1,5 @@
 #pragma once
-#include "Component.h"
+#include "Framework/Component.h"
 #include "Audio/AudioChannel.h"
 #include <string>
 // !! include the Audio Channel 

@@ -1,5 +1,5 @@
 #include "Renderer.h"
-#include "Rect.h"
+#include "Math/Rect.h"
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include <SDL_Image.h>

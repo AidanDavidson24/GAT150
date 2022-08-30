@@ -1,7 +1,7 @@
 #include "Actor.h"
-#include "RenderComponent.h"
+#include "Components/RenderComponent.h"
 #include "Factory.h"
-#include "../Math/MathUtils.h"
+#include "Math/MathUtils.h"
 
 namespace neu
 {
@@ -9,6 +9,7 @@ namespace neu
 	{
 		name = other.name;
 		tag = other.tag;
+		m_transform = other.m_transform;
 		m_scene = other.m_scene;
 
 		for (auto& component : other.m_components)

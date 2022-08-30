@@ -1,7 +1,7 @@
 #pragma once
-#include "../Math/Vector2.h"
-#include "../Math/Color.h"
-#include "../Texture.h"
+#include "Math/Vector2.h"
+#include "Math/Color.h"
+#include "Renderer/Texture.h"
 #include "Math/Transform.h"
 //#include <SDL.h>
 

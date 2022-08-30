@@ -27,6 +27,7 @@ namespace neu
 		void Initialize() override;
 		void Update() override;
 		void Draw(Renderer& renderer);
+		void RemoveAll();
 
 		virtual bool Write(const rapidjson::Value& value) const override;
 		virtual bool Read(const rapidjson::Value& value) override;
@@ -35,6 +36,12 @@ namespace neu
 
 		template<typename T>
 		T* GetActor();
+
+		template<typename T = Actor>
+		T* GetActorFromName(const std::string& name);
+
+		template<typename T = Actor>
+		std::vector<T*> GetActorsFromTag(const std::string& tag);
 
 		Game* GetGame() { return m_game; }
 
@@ -53,5 +60,35 @@ namespace neu
 		}
 
 		return nullptr;
+	}
+	template<typename T>
+	inline T* Scene::GetActorFromName(const std::string& name)
+	{
+		for(auto& actor: m_actors)
+		{
+			if (actor->GetName()== name)
+			{
+				return dynamic_cast<T*>(actor.get());
+			}
+		}
+
+		return nullptr;
+	}
+
+	template<typename T>
+	inline std::vector<T*> Scene::GetActorsFromTag(const std::string& tag)
+	{
+		std::vector<T*> result;
+
+		for(auto& actor : m_actors)
+		{
+			if (actor->getName() == m_actors->getName())
+			{
+				T* tagActor = dynamic_cast<T*>(actor.get());
+				if (tagActor) result.push_back(actor);
+			}
+		}
+
+		return result;
 	}
 }

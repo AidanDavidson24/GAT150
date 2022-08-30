@@ -1,6 +1,6 @@
 #pragma once
 #include "RenderComponent.h"
-#include "Rect.h"
+#include "Math/Rect.h"
 #include "Math/Vector2.h"
 #include <vector>
 

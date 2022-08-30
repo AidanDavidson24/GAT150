@@ -1,6 +1,6 @@
 #pragma once
 #include "Singleton.h"
-#include "Logger.h"
+#include "Core/Logger.h"
 #include <memory>
 #include <map>
 #include <string>
