@@ -23,6 +23,7 @@
 #include "Components/SpriteAnimComponent.h"
 #include "Components/TextComponent.h"
 #include "Components/TilemapComponent.h"
+#include "Components/CameraComponent.h"
 
 #include "Input/InputSystem.h"
 #include "Renderer/Renderer.h"

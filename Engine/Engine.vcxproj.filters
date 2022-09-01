@@ -149,6 +149,9 @@
       <Filter>Serialization</Filter>
     </ClCompile>
     <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="Components\CameraComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Input\InputSystem.h">
@@ -302,5 +305,8 @@
       <Filter>Serialization</Filter>
     </ClInclude>
     <ClInclude Include="Engine.h" />
+    <ClInclude Include="Components\CameraComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

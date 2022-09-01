@@ -1,8 +1,10 @@
 #include "Platformer.h"
+#include "Components/EnemyComponent.h"
 #include "Engine.h"
 
 void Platformer::Initialize()
 {
+	neu::REGISTER_CLASS(EnemyComponent);
 	m_scene = std::make_unique<neu::Scene>();
 
 	rapidjson::Document document;
@@ -44,10 +46,28 @@ void Platformer::Update()
 	case Platformer::gameState::titleScreen:
 		if (neu::g_inputSystem.GetKeyState(neu::key_space) == neu::InputSystem::State::Press)
 		{
-			//m_scene->GetActorFromName
+			m_scene->GetActorFromName("title")->SetActive(false);
+
+			m_gameState = gameState::startLevel;
 		}
 		break;
 	case Platformer::gameState::startLevel:
+		for (int i = 0; i < 10000000000; i++)
+		{
+			auto actor = neu::Factory::Instance().Create<neu::Actor>("Coin");
+			actor->m_transform.position = { neu::randomf(0,800), 100.0f };
+			actor->Initialize();
+
+			m_scene->Add(std::move(actor));
+		}
+		for (int i = 0; i < 3; i++)
+		{
+			auto actor = neu::Factory::Instance().Create<neu::Actor>("Ghost");
+			actor->m_transform.position = { neu::randomf(0,800), 100.0f };
+			actor->Initialize();
+
+			m_scene->Add(std::move(actor));
+		}
 		break;
 	case Platformer::gameState::game:
 		break;

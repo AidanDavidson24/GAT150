@@ -38,6 +38,9 @@ namespace neu
 		void Draw(std::shared_ptr<Texture> texture, const Transform& transform, const Vector2& registration);
 		void Draw(std::shared_ptr<Texture> texture, const Rect& source, const Transform& transform, const Vector2& registration = Vector2{ 0.5f, 0.5f });
 
+		void SetViewMatrix(const Matrix3x3& view) { m_view = view; }
+		void SetViewportMatrix(const Matrix3x3& viewport) { m_viewport = viewport; }
+
 		int GetWidth() { return m_width; }
 		int GetHeight() { return m_height; }
 
@@ -48,6 +51,9 @@ namespace neu
 	private:
 		int m_width = 0;
 		int m_height = 0;
+
+		Matrix3x3 m_view;
+		Matrix3x3 m_viewport;
 
 		Color m_clearColor{ 0, 0, 0, 255 };
 

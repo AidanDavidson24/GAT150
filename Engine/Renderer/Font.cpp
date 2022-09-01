@@ -1,6 +1,6 @@
 #include "Renderer/Font.h"
 #include <SDL_ttf.h>
-#include "Logger.h"
+#include "Core/Logger.h"
 
 namespace neu
 {

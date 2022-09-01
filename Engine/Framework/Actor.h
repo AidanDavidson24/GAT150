@@ -56,6 +56,7 @@ namespace neu
 
 		bool active = true;
 		bool m_destroy = false;
+		float lifespan = 0;
 
 		Vector2 m_velocity;
 		float m_damping = 1;
