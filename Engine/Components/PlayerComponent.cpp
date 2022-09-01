@@ -9,6 +9,7 @@ void neu::PlayerComponent::Update()
 
 	if (g_inputSystem.GetKeyState(key_a) == InputSystem::State::Held)
 	{
+		std::cout << "KeyPressedA\n";
 		direction = Vector2::left;
 	}
 
@@ -16,21 +17,17 @@ void neu::PlayerComponent::Update()
 	{
 		direction = Vector2::right;
 	}
-	if (g_inputSystem.GetKeyState(key_w) == InputSystem::State::Press)
+	if (g_inputSystem.GetKeyState(key_w) == InputSystem::State::Held)
 	{
 		direction = Vector2::up;
-	}
-	if (m_groundCount > 0 && g_inputSystem.GetKeyState(key_space) == InputSystem::State::Press)
-	{
-
-	}
+	} 
 	Vector2 velocity;
 	auto component = m_owner->GetComponent<PhysicsComponent>();
 	if (component)
 	{
 		float multiplier = (m_groundCount > 0) ? 1 : 0.2f;
 
-		component->ApplyForce(direction * speed * multiplier);
+		component->ApplyForce(direction * speed);
 		velocity = component->m_velocity;
 	}
 	//auto component = m_owner->GetComponent<PhysicsComponent>();
@@ -63,12 +60,14 @@ void neu::PlayerComponent::Update()
 
 bool neu::PlayerComponent::Write(const rapidjson::Value& value) const
 {
-	return false;
+	return true;
 }
 
 bool neu::PlayerComponent::Read(const rapidjson::Value& value)
 {
-	return false;
+	CharacterComponent::Read(value);
+
+	return true;
 }
 
 void neu::PlayerComponent::OnCollisionEnter(Actor* other)

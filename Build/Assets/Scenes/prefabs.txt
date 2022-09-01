@@ -1,72 +1,11 @@
 {
     "actors":[
-       {
-            "type":"Actor",
-            "name":"Player",
-            "tag":"Player",
-            "prefab":true,
-            "transform":{
-                "position":[
-                    400,
-                    200
-                ],
-                "scale":[
-                    2,
-                    2
-                ],
-                "rotation":0
-            },
-            "components":[
-                {
-                    "type":"PlayerComponent",
-                    "speed":20,
-                    "jump":400
-                },
-                {
-                    "type":"RBPhysicsComponent",
-                    "damping":0.1,
-                    "data.gravity_scale":1,
-                    "data.constrain_angle":true
-                },
-                {
-                    "type":"CollisionComponent",
-                    "data.restitution": 0.1,
-                    "scale_offset":[
-                        0.25,
-                        1
-                    ]
-                },
-               {
-                    "type":"SpriteAnimComponent",
-                    "default_sequence":"idle",
-                    "sequences":[
-                        {
-                            "sequence.name":"run",
-                            "sequence.fps":12,
-                            "sequence.num_columns":12,
-                            "sequence.num_rows":1,
-                            "sequence.start_frame":1,
-                            "sequence.end_frame":12,
-                            "texture_name":"gothic-hero-run.png"
-                        },
-                        {
-                            "sequence.name":"idle",
-                            "sequence.fps":12,
-                            "sequence.num_columns":4,
-                            "sequence.num_rows":1,
-                            "sequence.start_frame":1,
-                            "sequence.end_frame":4,
-                            "texture_name":"gothic-hero-idle.png"
-                        }
-                    ]
-                }
-            ]
-        },
+       
         {
             "type":"Actor",
             "name":"Coin",
             "tag":"Pickup",
-            "lifespan": 4,
+            "lifespan": 10,
             "prefab":true,
             "transform":{
                 "position":[

@@ -9,6 +9,88 @@
                     300
                 ],
                 "scale":[
+                    5,
+                    5
+                ],
+                "rotation":0
+            },
+            "components":[
+                {
+                    "type":"SpriteComponent",
+                    "texture_name":"Dungeon_Background_1.png"
+                }
+            ]
+        },      
+	{
+         "type":"Actor",
+         "name":"Music",
+         "components":[
+            {
+               "type":"AudioComponent",
+               "sound_name":"music.mp3",
+               "loop":true,
+               "pitch":1,
+               "play_on_start":true
+            }
+         ]
+      },{
+            "type":"Actor",
+            "name":"Coin",
+            "tag":"Pickup",
+            "transform":{
+                "position":[
+                    600,
+                    200
+                ],
+                "scale":[
+                    1,
+                    1
+                ],
+                "rotation":0
+            },
+            "components":[
+                {
+                    "type":"RBPhysicsComponent",
+                    "damping":0.4,
+                    "data.gravity_scale":1,
+                    "data.constrain_angle":false
+                },
+                {
+                    "type":"CollisionComponent",
+                    "data.size":[
+                        48,
+                        48
+                    ],
+                    "data.restitution":0.7
+                },
+                {
+                    "type":"SpriteAnimComponent",
+                    "default_sequence":"idle",
+                    "sequences":[
+                        {
+                            "sequence.name":"idle",
+                            "sequence.fps":12,
+                            "sequence.num_columns":8,
+                            "sequence.num_rows":1,
+                            "sequence.start_frame":1,
+                            "sequence.end_frame":8,
+                            "texture_name":"Textures/coin.png"
+                        }
+                    ]
+                }
+            ]
+        },
+
+{
+            "type":"Actor",
+            "name":"Player",
+            "tag":"Player",
+            "transform":{
+                "position":[
+                    400,
+                    200
+                ],
+                "scale":[
                     2,
                     2
                 ],
@@ -16,8 +98,47 @@
             },
             "components":[
                 {
-                    "type":"SpriteComponent",
-                    "texture_name":"background.png"
+                    "type":"PlayerComponent",
+                    "speed":20,
+                    "jump":4000
+                },
+                {
+                    "type":"RBPhysicsComponent",
+                    "damping":0.1,
+                    "data.gravity_scale":1,
+                    "data.constrain_angle":true
+                },
+                {
+                    "type":"CollisionComponent",
+                    "data.restitution": 0.1,
+                    "scale_offset":[
+                        0.25,
+                        1
+                    ]
+                },
+               {
+                    "type":"SpriteAnimComponent",
+                    "default_sequence":"idle",
+                    "sequences":[
+                        {
+                            "sequence.name":"run",
+                            "sequence.fps":12,
+                            "sequence.num_columns":12,
+                            "sequence.num_rows":1,
+                            "sequence.start_frame":1,
+                            "sequence.end_frame":12,
+                            "texture_name":"gothic-hero-run.png"
+                        },
+                        {
+                            "sequence.name":"idle",
+                            "sequence.fps":12,
+                            "sequence.num_columns":4,
+                            "sequence.num_rows":1,
+                            "sequence.start_frame":1,
+                            "sequence.end_frame":4,
+                            "texture_name":"gothic-hero-idle.png"
+                        }
+                    ]
                 }
             ]
         },
@@ -60,7 +181,7 @@
             "components":[
                 {
                     "type":"TextComponent",
-                    "text":"NEUMONT COLLEGE",
+                    "text":"",
                     "font_name":"fonts/Starjedi.ttf",
                     "font_size":48,
                     "registration":[

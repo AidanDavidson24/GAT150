@@ -22,7 +22,15 @@ void Platformer::Initialize()
 	}
 	m_scene->Initialize();
 
-	for (int i = 0; i < 10; i++)
+	//for (int i = 0; i < 10; i++)
+	//{
+	//	auto actor = neu::Factory::Instance().Create<neu::Actor>("Coin");
+	//	actor->m_transform.position = { neu::randomf(0,800), 100.0f };
+	//	actor->Initialize();
+
+	//	m_scene->Add(std::move(actor));
+	//}
+	for (int i = 0; i < 18; i++)
 	{
 		auto actor = neu::Factory::Instance().Create<neu::Actor>("Coin");
 		actor->m_transform.position = { neu::randomf(0,800), 100.0f };
@@ -30,7 +38,14 @@ void Platformer::Initialize()
 
 		m_scene->Add(std::move(actor));
 	}
+	for (int i = 0; i < 3; i++)
+	{
+		auto actor = neu::Factory::Instance().Create<neu::Actor>("Ghost");
+		actor->m_transform.position = { neu::randomf(0,800), 100.0f };
+		actor->Initialize();
 
+		m_scene->Add(std::move(actor));
+	}
 	neu::g_eventManager.Subscribe("EVENT ADD POINTS", std::bind(&Platformer::OnAddPoints, this, std::placeholders::_1));
 }
 
@@ -43,17 +58,20 @@ void Platformer::Update()
 {
 	switch (m_gameState)
 	{
-	case Platformer::gameState::titleScreen:
+	/*case Platformer::gameState::titleScreen:
 		if (neu::g_inputSystem.GetKeyState(neu::key_space) == neu::InputSystem::State::Press)
 		{
 			m_scene->GetActorFromName("title")->SetActive(false);
 
 			m_gameState = gameState::startLevel;
-		}
+		}*/
 		break;
 	case Platformer::gameState::startLevel:
-		for (int i = 0; i < 10000000000; i++)
+
+		for (int i = 0; i < 10; i++)
 		{
+
+
 			auto actor = neu::Factory::Instance().Create<neu::Actor>("Coin");
 			actor->m_transform.position = { neu::randomf(0,800), 100.0f };
 			actor->Initialize();
@@ -72,6 +90,11 @@ void Platformer::Update()
 	case Platformer::gameState::game:
 		break;
 	case Platformer::gameState::playerDead:
+		m_stateTimer -= neu::g_time.deltaTime;
+		if (m_stateTimer <= 0)
+		{
+			m_gameState = gameState::startLevel;
+		}
 		break;
 	case Platformer::gameState::gameOver:
 		break;
@@ -90,6 +113,7 @@ void Platformer::OnAddPoints(const neu::Event& event)
 {
 	std::cout << event.name << std::endl;
 	std::cout << std::get<int>(event.data) << std::endl;
+	std::cout << GetScore() << std::endl;
 }
 
 void Platformer::OnPlayerDead(const neu::Event& event)
