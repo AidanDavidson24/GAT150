@@ -46,6 +46,14 @@ void Platformer::Initialize()
 
 		m_scene->Add(std::move(actor));
 	}
+	for (int i = 0; i < 1; i++)
+	{
+		auto actor = neu::Factory::Instance().Create<neu::Actor>("Demon");
+		actor->m_transform.position = { neu::randomf(0,800), 100.0f };
+		actor->Initialize();
+
+		m_scene->Add(std::move(actor));
+	}
 	neu::g_eventManager.Subscribe("EVENT ADD POINTS", std::bind(&Platformer::OnAddPoints, this, std::placeholders::_1));
 }
 

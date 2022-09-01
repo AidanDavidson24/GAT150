@@ -10,6 +10,9 @@ namespace neu
 	{
 		b2Vec2 gravity{ 0, 10 };
 		m_world = std::make_unique<b2World>(gravity);
+
+		m_contactlistener = std::make_unique<ContactListener>();
+		m_world->SetContactListener(m_contactlistener.get());
 	}
 
 	void PhysicsSystem::Shutdown()

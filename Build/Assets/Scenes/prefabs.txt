@@ -46,6 +46,58 @@
                 }
             ]
         },
+	        {
+            "type":"Actor",
+            "name":"Demon",
+            "tag":"Enemy",
+            "prefab":true,
+            "transform":{
+                "position":[
+                    600,
+                    200
+                ],
+                "scale":[
+                    2,
+                    2
+                ],
+                "rotation":0
+            },
+            "components":[
+		{
+                    "type":"EnemyComponent",
+                    "speed":10,
+                    "health":30,
+                    "damage":60
+                },
+                {
+                    "type":"RBPhysicsComponent",
+                    "damping":0.4,
+                    "data.gravity_scale":0,
+                    "data.constrain_angle":true
+                },
+                {
+                    "type":"CollisionComponent",
+                    "data.restitution":0.7,
+                    "data.is_trigger":true,
+                    "scale_offset": [ 0.5, 0.5 ]
+                },
+                {
+                    "type":"SpriteAnimComponent",
+                    "default_sequence":"idle",
+                    "sequences":[
+                        {
+                            "sequence.name":"idle",
+                            "sequence.fps":12,
+                            "sequence.num_columns":6,
+                            "sequence.num_rows":1,
+                            "sequence.start_frame":1,
+                            "sequence.end_frame":6,
+                            "texture_name":"demon-idle.png"
+                        }
+                    ]
+                }
+            ]
+        },
         {
             "type":"Actor",
             "name":"Ghost",

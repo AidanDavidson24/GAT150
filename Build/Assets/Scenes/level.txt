@@ -27,7 +27,7 @@
          "components":[
             {
                "type":"AudioComponent",
-               "sound_name":"music.mp3",
+               "sound_name":"In the Hall of the Mountain King.mp3",
                "loop":true,
                "pitch":1,
                "play_on_start":true
@@ -141,7 +141,7 @@
                     ]
                 }
             ]
-        },
+        },       
         {
             "type":"Actor",
             "name":"Camera",
