@@ -66,8 +66,8 @@ void Platformer::Update()
 {
 	switch (m_gameState)
 	{
-	/*case Platformer::gameState::titleScreen:
-		if (neu::g_inputSystem.GetKeyState(neu::key_space) == neu::InputSystem::State::Press)
+	case Platformer::gameState::titleScreen:
+		/*if (neu::g_inputSystem.GetKeyState(neu::key_space) == neu::InputSystem::State::Press)
 		{
 			m_scene->GetActorFromName("title")->SetActive(false);
 
